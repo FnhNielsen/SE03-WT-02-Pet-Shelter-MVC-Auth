@@ -12,7 +12,7 @@
             </div>
             <div class="card-body">
                 <!-- Task 2 Guest, step 5: add the HTTP method and url as instructed-->
-                <form method="POST" action="#">
+                <form method="POST" action="/">
                     @csrf
                     <!-- Task 2 Guest, step 3: add register fields as instructed-->
                     <!-- Tip: we add the element name for you as an inspiration on how you can add the rest of the inputs -->
