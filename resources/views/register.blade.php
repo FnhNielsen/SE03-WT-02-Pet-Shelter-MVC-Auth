@@ -32,7 +32,7 @@
                     <!-- end of Tip -->
 
                     <div class="d-flex justify-content-between align-items-center">
-                        <button class="register-submit">Register</button>
+                        <button href="{{route("home")}}" class="register-submit">Register</button>
                     </div>
                 </form>
             </div>
