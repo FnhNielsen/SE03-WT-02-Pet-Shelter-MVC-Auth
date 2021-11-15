@@ -7,6 +7,10 @@
         <div class="row">
             @forelse($adoptions as $adoption)
                 <div class="col-4 pet">
+                    <ul class="pet">
+                        <li class="pet-name"></li>
+                        <li class="pet-description"></li>
+                    </ul>
                     @include('adoptions.partials.card', ['adoption' => $adoption])
                 </div>
             @empty
