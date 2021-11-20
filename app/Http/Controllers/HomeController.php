@@ -22,6 +22,12 @@ class HomeController extends Controller
 
     public function doLogin(Request $request)
     {
+        $loginAttributes = $request->validate([
+            'name'=> 'required',
+            'email'=> ['required', 'email']
+        ]);
+        Auth::login($loginAttributes);
+        return redirect('/login');
         /*
         |-----------------------------------------------------------------------
         | Task 3 Guest, step 5. You should implement this method as instructed
