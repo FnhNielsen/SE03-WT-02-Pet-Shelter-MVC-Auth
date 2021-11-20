@@ -28,7 +28,7 @@
                         @endif
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
-                        <button href="{{route("home")}}" class="register-submit">Register</button>
+                        <button type="submit" href="{{route("home")}}" class="register-submit">Register</button>
                     </div>
                 </form>
             </div>

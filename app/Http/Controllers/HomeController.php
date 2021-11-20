@@ -41,9 +41,9 @@ class HomeController extends Controller
             'email' => ['required','email'],
             'password' => 'required'
         ]);
-        User::created($userAttributes);
-        Auth::login($userAttributes);
-        return redirect('/register');
+       $user = User::created($userAttributes);
+        Auth::login($user);
+        return redirect('/');
     }
 
     public function logout()
