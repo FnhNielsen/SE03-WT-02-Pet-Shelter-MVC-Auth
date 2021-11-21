@@ -12,7 +12,7 @@
             </div>
             <div class="card-body">
                 <!-- Task 2 Guest, step 5: add the HTTP method and url as instructed-->
-                <form method="POST" action="/">
+                <form method="GET" action="/">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
