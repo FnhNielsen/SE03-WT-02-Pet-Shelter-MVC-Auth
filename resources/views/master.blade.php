@@ -36,12 +36,14 @@
             </ul>
             <ul class="navbar-nav d-flex">
                 <!-- Task 1 Authorization, elements should appear for guest users only -->
+                @guest()
                     <li class="nav-item">
                         <a class="nav-link register-link" href="{{route("register")}}">Register</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link login-link" href="{{route("login")}}">Login</a>
                     </li>
+            @endguest
 
                 <!-- Task 1 Authorization-->
 
