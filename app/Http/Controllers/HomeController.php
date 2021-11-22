@@ -6,6 +6,7 @@ use App\Models\Adoption;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Nette\Schema\ValidationException;
 
 class HomeController extends Controller
 {
@@ -22,12 +23,18 @@ class HomeController extends Controller
 
     public function doLogin(Request $request)
     {
-        $loginAttributes = $request->validate([
-            'name'=> 'required',
-            'email'=> ['required', 'email']
+        $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => 'required'
         ]);
-        Auth::login($loginAttributes);
-        return redirect('/login');
+        if(Auth::attempt($request))
+        {
+            session()->regenerate();
+            return redirect()->route('store');
+        }
+        throw ValidationException::withMessage([
+            'email' => 'Your provided credentials could not be verified.'
+        ]);
     }
 
     public function register()
@@ -37,22 +44,26 @@ class HomeController extends Controller
 
     public function doRegister(Request $request)
     {
-        $userAttributes = $request->validate([
-            'name'=> 'required',
-            'email' => ['required','email'],
-            'password' => 'required'
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required']
         ]);
-        User::created($userAttributes);
-        Auth::login($userAttributes);
-        return redirect('/');
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password
+        ]);
+
+        $user->save();
+        Auth::login($user);
+        return redirect()->route('home');
     }
 
     public function logout()
     {
-        /*
-        |-----------------------------------------------------------------------
-        | Task 2 User, step 3. You should implement this method as instructed
-        |-----------------------------------------------------------------------
-        */
+        Auth::logout();
+        return redirect()->route('home');
     }
 }
