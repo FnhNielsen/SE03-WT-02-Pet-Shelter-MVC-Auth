@@ -41,14 +41,14 @@ class HomeController extends Controller
             'email' => ['required','email'],
             'password' => 'required'
         ]);
-        $user = User::created([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            ]);
+        $user = User::created( request([
+            'name',
+            'email',
+            'password',
+            ]));
 
         Auth::login($user);
-        return redirect('/');
+        return redirect()->route("/");
     }
 
     public function logout()
