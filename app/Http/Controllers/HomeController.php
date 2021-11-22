@@ -36,12 +36,17 @@ class HomeController extends Controller
 
     public function doRegister(Request $request)
     {
-        $userAttributes = $request->validate([
+        $request->validate([
             'name'=> 'required',
             'email' => ['required','email'],
             'password' => 'required'
         ]);
-       $user = User::created($userAttributes);
+        $user = User::created([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            ]);
+
         Auth::login($user);
         return redirect('/');
     }
