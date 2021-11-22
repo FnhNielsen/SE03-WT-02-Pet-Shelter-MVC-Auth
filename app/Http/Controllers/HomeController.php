@@ -28,11 +28,6 @@ class HomeController extends Controller
         ]);
         Auth::login($loginAttributes);
         return redirect('/login');
-        /*
-        |-----------------------------------------------------------------------
-        | Task 3 Guest, step 5. You should implement this method as instructed
-        |-----------------------------------------------------------------------
-        */
     }
 
     public function register()
