@@ -6,7 +6,6 @@ use App\Models\Adoption;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Nette\Schema\ValidationException;
 
 class HomeController extends Controller
 {
@@ -23,18 +22,7 @@ class HomeController extends Controller
 
     public function doLogin(Request $request)
     {
-        $request->validate([
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => 'required'
-        ]);
-        if(Auth::attempt($request))
-        {
-            session()->regenerate();
-            return redirect()->route('store');
-        }
-        throw ValidationException::withMessage([
-            'email' => 'Your provided credentials could not be verified.'
-        ]);
+
     }
 
     public function register()
@@ -63,7 +51,10 @@ class HomeController extends Controller
 
     public function logout()
     {
-        Auth::logout();
-        return redirect()->route('home');
+        /*
+        |-----------------------------------------------------------------------
+        | Task 2 User, step 3. You should implement this method as instructed
+        |-----------------------------------------------------------------------
+        */
     }
 }

@@ -37,12 +37,21 @@
             <ul class="navbar-nav d-flex">
                 <!-- Task 1 Authorization, elements should appear for guest users only -->
                     <li class="nav-item">
+                        <!-- Task 2 Guest, step 2: add correct link in href -->
                         <a class="nav-link register-link" href="{{route("register")}}">Register</a>
                     </li>
+<<<<<<< HEAD
+=======
+                @endguest
+>>>>>>> parent of 2bbe004 (login and logout)
                     <li class="nav-item">
+                        <!-- Task 3 Guest, step 2: add correct link in href -->
                         <a class="nav-link login-link" href="{{route("login")}}">Login</a>
                     </li>
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 2bbe004 (login and logout)
                 <!-- Task 1 Authorization-->
 
                 <!-- Task 1 Authorization, elements should appear for logged users only -->
@@ -50,7 +59,11 @@
                     <span class="navbar-text text-black me-4 user-name">{{Auth()->user()->name}}</span>
                     <li class="nav-item">
                         <!-- Task 2 User, step 3: add correct link-->
+<<<<<<< HEAD
                         <a class="nav-link logout-link" href="{{route('home')}}">Log out</a>
+=======
+                        <a class="nav-link logout-link" href="#">Log out</a>
+>>>>>>> parent of 2bbe004 (login and logout)
                     </li>
                 <!-- Task 1 Authorization-->
             </ul>
