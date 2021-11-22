@@ -23,18 +23,17 @@ class HomeController extends Controller
 
     public function doLogin(Request $request)
     {
-        $request->validate([
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => 'required'
+        $user = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
-        if(Auth::attempt($request))
-        {
-            session()->regenerate();
-            return redirect()->route('store');
+
+        if (Auth::attempt($user)) {
+
+            return redirect()->to('/');
         }
-        throw ValidationException::withMessage([
-            'email' => 'Your provided credentials could not be verified.'
-        ]);
+
+        return redirect()->route('login');
     }
 
     public function register()

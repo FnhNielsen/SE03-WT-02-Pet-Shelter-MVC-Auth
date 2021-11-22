@@ -43,7 +43,7 @@
                     <li class="nav-item">
                         <a class="nav-link login-link" href="{{route("login")}}">Login</a>
                     </li>
-            @endguest
+                @endguest
 
                 <!-- Task 1 Authorization-->
 
