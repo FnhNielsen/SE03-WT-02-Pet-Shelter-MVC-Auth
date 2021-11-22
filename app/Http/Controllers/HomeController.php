@@ -22,11 +22,7 @@ class HomeController extends Controller
 
     public function doLogin(Request $request)
     {
-        /*
-        |-----------------------------------------------------------------------
-        | Task 3 Guest, step 5. You should implement this method as instructed
-        |-----------------------------------------------------------------------
-        */
+
     }
 
     public function register()
@@ -37,18 +33,20 @@ class HomeController extends Controller
     public function doRegister(Request $request)
     {
         $request->validate([
-            'name'=> 'required',
-            'email' => ['required','email'],
-            'password' => 'required'
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required']
         ]);
-        $user = User::created( request([
-            'name',
-            'email',
-            'password',
-            ]));
 
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password
+        ]);
+
+        $user->save();
         Auth::login($user);
-        return redirect()->route("/");
+        return redirect()->route('home');
     }
 
     public function logout()
