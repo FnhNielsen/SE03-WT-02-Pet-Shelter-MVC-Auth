@@ -18,17 +18,10 @@
                     <div>
                         <label for="name" class="form-label">Email</label>
                         <input type="text" name="email" class="form-control email" id="email" value="{{old('email')}}">
-                        @if($errors->has('email'))
-                            <div class="form-text text-danger">{{ $errors->first('email') }}</div>
-                        @endif
                     </div>
-
                         <div>
                             <label for="name" class="form-label">Password</label>
                             <input type="password" name="password" class="form-control password" id="password" value="{{ old('password') }}">
-                            @if($errors->has('password'))
-                                <div class="form-text text-danger">{{ $errors->first('password') }}</div>
-                            @endif
                         </div> <br>
                     <div class="d-flex justify-content-between align-items-center">
                         <!-- Task 3 Guest, step 4: add submit button-->
