@@ -12,20 +12,15 @@
             </div>
             <div class="card-body">
                 <form method="POST" action="{{route('doLogin')}}">
-                    @csrf
-                    <!-- Task 3 Guest, step 3: add login fields as instructed-->
-                    <!-- Tip: you can use the same style as the registration form -->
-                    <div>
-                        <label for="name" class="form-label">Email</label>
-                        <input type="text" name="email" class="form-control email" id="email" value="{{old('email')}}">
-                    </div>
-                        <div>
-                            <label for="name" class="form-label">Password</label>
-                            <input type="password" name="password" class="form-control password" id="password" value="{{ old('password') }}">
-                        </div> <br>
+                @csrf
+                    <label for="email" class="form-label">Email</label>
+                    <input type="text" name="email" class="form-control email" id="email" value="{{ old('email') }}">
+
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control password" id="password">
+
+                    <button type="submit" class="login-submit">Register</button>
                     <div class="d-flex justify-content-between align-items-center">
-                        <!-- Task 3 Guest, step 4: add submit button-->
-                        <button type="submit" class="login-submit">{{__('Login')}}</button>
                     </div>
                 </form>
             </div>

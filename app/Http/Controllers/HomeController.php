@@ -6,6 +6,7 @@ use App\Models\Adoption;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Nette\Schema\ValidationException;
 
 class HomeController extends Controller
 {
@@ -22,7 +23,17 @@ class HomeController extends Controller
 
     public function doLogin(Request $request)
     {
+        $user = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
+        if (Auth::attempt($user)) {
+
+            return redirect()->to('/');
+        }
+
+        return redirect()->route('login');
     }
 
     public function register()
@@ -51,10 +62,7 @@ class HomeController extends Controller
 
     public function logout()
     {
-        /*
-        |-----------------------------------------------------------------------
-        | Task 2 User, step 3. You should implement this method as instructed
-        |-----------------------------------------------------------------------
-        */
+        Auth::logout();
+        return redirect()->route('home');
     }
 }
