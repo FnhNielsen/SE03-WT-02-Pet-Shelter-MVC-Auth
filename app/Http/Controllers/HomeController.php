@@ -49,7 +49,7 @@ class HomeController extends Controller
         ]);
         User::created($userAttributes);
         Auth::login($userAttributes);
-        return redirect('/register');
+        return redirect('/');
     }
 
     public function logout()
