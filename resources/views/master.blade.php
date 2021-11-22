@@ -25,7 +25,7 @@
                 </li>
 
                 <!-- Task 1 Authorization, elements should appear for logged users only -->
-                
+
                     <li class="nav-item">
                         <a class="nav-link adoption-mine" href="{{ route('adoptions.mine') }}">My Adoptions</a>
                     </li>
@@ -44,13 +44,13 @@
                 @endguest
                     <li class="nav-item">
                         <!-- Task 3 Guest, step 2: add correct link in href -->
-                        <a class="nav-link login-link" href="#">Login</a> 
+                        <a class="nav-link login-link" href="{{route("login")}}">Login</a>
                     </li>
                 <!-- Task 1 Authorization-->
 
                 <!-- Task 1 Authorization, elements should appear for logged users only -->
                     <!-- Task 1 User, step 1: add name of logged user-->
-                    <span class="navbar-text text-black me-4 user-name">user name</span>
+                    <span class="navbar-text text-black me-4 user-name">{{Auth()->user()->name}}</span>
                     <li class="nav-item">
                         <!-- Task 2 User, step 3: add correct link-->
                         <a class="nav-link logout-link" href="#">Log out</a>
