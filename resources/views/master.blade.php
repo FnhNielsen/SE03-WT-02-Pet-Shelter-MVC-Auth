@@ -51,7 +51,7 @@
 
                 <!-- Task 1 Authorization, elements should appear for logged users only -->
                     <!-- Task 1 User, step 1: add name of logged user-->
-                    <span class="navbar-text text-black me-4 user-name">name</span>
+                    <span class="navbar-text text-black me-4 user-name">{{Auth()->user()->name}}</span>
                     <li class="nav-item">
                         <!-- Task 2 User, step 3: add correct link-->
                         @auth()
