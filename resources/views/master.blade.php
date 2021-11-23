@@ -23,19 +23,16 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="#">Home</a>
                 </li>
-
-                <!-- Task 1 Authorization, elements should appear for logged users only -->
-
+                @auth()
                     <li class="nav-item">
                         <a class="nav-link adoption-mine" href="{{ route('adoptions.mine') }}">My Adoptions</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link adoption-create" href="{{ route('adoptions.create') }}">New Listing</a>
                     </li>
-                <!-- Task 1 Authorization-->
+                @endauth
             </ul>
             <ul class="navbar-nav d-flex">
-                <!-- Task 1 Authorization, elements should appear for guest users only -->
                 @guest()
                     <li class="nav-item">
                         <a class="nav-link register-link" href="{{route("register")}}">Register</a>
@@ -45,10 +42,6 @@
                     </li>
                 @endguest
 
-                <!-- Task 1 Authorization-->
-
-                <!-- Task 1 Authorization, elements should appear for logged users only -->
-                    <!-- Task 1 User, step 1: add name of logged user-->
                 @auth()
                     <span class="navbar-text text-black me-4 user-name">{{Auth()->user()->name}}</span>
                     <li class="nav-item">
@@ -56,7 +49,6 @@
                         <a class="nav-link logout-link" href="{{route('logout')}}">Log out</a>
                     </li>
             @endauth
-                <!-- Task 1 Authorization-->
             </ul>
         </div>
     </div>
