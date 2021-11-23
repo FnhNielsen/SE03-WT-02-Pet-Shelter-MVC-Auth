@@ -6,6 +6,7 @@ use App\Models\Adoption;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Nette\Schema\ValidationException;
 
 class HomeController extends Controller
@@ -30,7 +31,7 @@ class HomeController extends Controller
 
         if (Auth::attempt($user)) {
 
-            return redirect()->to('/');
+            return redirect()->route('home');
         }
 
         return redirect()->route('login');
@@ -52,7 +53,7 @@ class HomeController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password
+            'password' => bcrypt($request->password)
         ]);
 
         $user->save();
