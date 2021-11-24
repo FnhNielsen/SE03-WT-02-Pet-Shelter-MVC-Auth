@@ -37,6 +37,10 @@ class AdoptionController extends Controller
         $adoption->listed_by   = auth()->id();
         $adoption->save();
 
+        //Virker ikke helt :((
+        //return redirect()->home()->with('success', "Post for".$adoption->name. "created successfully");
+        return redirect()->route('home')->with('success', 'Post for '.$adoption->name.' created successfully');
+
         /*
         |-----------------------------------------------------------------------
         | Task 4 User, step 5.
