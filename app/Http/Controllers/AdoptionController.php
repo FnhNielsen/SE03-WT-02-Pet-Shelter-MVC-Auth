@@ -58,6 +58,13 @@ class AdoptionController extends Controller
 
     public function adopt(Adoption $adoption)
     {
+        if(auth()->id() == $adoption->listed_by){
+            abort(403);
+        }
+
+        $adoption->adopted_by = auth()->id();
+        $adoption->save();
+
         /*
         |-----------------------------------------------------------------------
         | Task 5 User, step 6. You should assing $adoption
@@ -72,6 +79,7 @@ class AdoptionController extends Controller
 
     public function mine()
     {
+        $adoptions = Adoption::where("adopted_by", "=", auth()->id()->get());
         /*
         |-----------------------------------------------------------------------
         | Task 6 User, step 3.
