@@ -39,7 +39,8 @@ class AdoptionController extends Controller
 
         //Virker ikke helt :((
         //return redirect()->home()->with('success', "Post for".$adoption->name. "created successfully");
-        return redirect()->route('home')->with('success', 'Post for '.$adoption->name.' created successfully');
+        //return redirect()->route('home')->with('success', 'Post for '.$adoption->name.' created successfully');
+        return redirect()->home()->with('success', "Post for $adoption->name created successfully");
 
         /*
         |-----------------------------------------------------------------------
