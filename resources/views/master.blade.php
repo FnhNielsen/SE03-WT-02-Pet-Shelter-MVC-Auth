@@ -25,13 +25,14 @@
                 </li>
 
                 <!-- Task 1 Authorization, elements should appear for logged users only -->
-
+                @auth()
                     <li class="nav-item">
                         <a class="nav-link adoption-mine" href="{{ route('adoptions.mine') }}">My Adoptions</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link adoption-create" href="{{ route('adoptions.create') }}">New Listing</a>
                     </li>
+                @endauth()
                 <!-- Task 1 Authorization-->
             </ul>
             <ul class="navbar-nav d-flex">
