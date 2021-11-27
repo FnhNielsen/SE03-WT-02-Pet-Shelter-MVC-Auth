@@ -12,12 +12,14 @@ class AdoptionController extends Controller
 {
     public function create()
     {
-        if(auth()->check()){
+        if(auth()->check())
+        {
             return view('adoptions.create');
         }
-        else return redirect()->route('login');
-        //else return view ('register');
-
+        else
+        {
+            return redirect()->route('login');
+        }
     }
 
     public function store(Request $request)
@@ -50,19 +52,6 @@ class AdoptionController extends Controller
         {
             return redirect()->route('login');
         }
-
-        //Virker ikke helt :((
-        //return redirect()->home()->with('success', "Post for".$adoption->name. "created successfully");
-        //return redirect()->route('home')->with('success', 'Post for '.$adoption->name.' created successfully');
-
-        /*
-        |-----------------------------------------------------------------------
-        | Task 4 User, step 5.
-        | The $adoption variable should be assigned to the logged user.
-        | This is done using the listed_by field from the user column in the database.
-        |-----------------------------------------------------------------------
-        */
-
     }
 
     public function show(Adoption $adoption)
@@ -75,10 +64,8 @@ class AdoptionController extends Controller
         if(auth()->id() == $adoption->listed_by){
             abort(403);
         }
-
         $adoption->adopted_by = auth()->id();
         $adoption->save();
-
         return redirect()->home()->with('success', "Pet $adoption->name adopted successfully");
     }
 
