@@ -15,7 +15,7 @@ class AdoptionController extends Controller
         if(auth()->check()){
             return view('adoptions.create');
         }
-        else return redirect()->route('register');
+        else return redirect()->route('login');
         //else return view ('register');
 
     }
@@ -85,13 +85,10 @@ class AdoptionController extends Controller
 
     public function mine(Adoption $adoption)
     {
-        $adoptions = Adoption::where($adoption->adopted_by == auth()->id());
-        /*
-        |-----------------------------------------------------------------------
-        | Task 6 User, step 3.
-        | You should assing the $adoptions variable with a list of all adoptions of logged user.
-        |-----------------------------------------------------------------------
-        */
-        return view('adoptions.list', ['adoptions' => $adoptions, 'header' => 'My Adoptions']);
+        if (Auth::check()) {
+            $adoptions = Adoption::where($adoption->adopted_by == auth()->id());
+            return view('adoptions.list', ['adoptions' => $adoptions, 'header' => 'My Adoptions']);
+        }
+        return redirect()->route('login');
     }
 }

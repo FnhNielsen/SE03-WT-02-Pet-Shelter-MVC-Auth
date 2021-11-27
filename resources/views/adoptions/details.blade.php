@@ -12,21 +12,17 @@
                         <h5 class="pet-name">{{ $adoption->name }}</h5>
                         <p class="pet-description">{{ $adoption->description }}</p>
                         <p>Listed by: <b>{{ $adoption->listedBy->name }}</b></p>
-                        <!-- Task 5 User, step 4: this form should not appear if the logged user is giving for adoption this pet -->
-                        <!-- Task 6 User, step 4: this form should not appear if the pet was already adopted -->
                         @if(auth()->check())
                         @if($adoption->listed_by !== auth()->id())
                         <form method="post" action="{{ route('adoptions.adopt', [$adoption->id]) }}">
                             @csrf
-                            <button type="submit" class="btn btn-success pet-adopt">Adopt Now
+                            <button type="submit" class="pet-adopt">Adopt Now
                             </button>
                         </form>
                         @endif
                         @endif
-
-
-                        @if($adoption->adopted_by != null)
-                            @if($adoption->adopted_by == auth()->id())
+                        @if($adoption->adoptedBy != null)
+                            @if($adoption->adoptedBy == auth()->id())
                                 <p class="text-success">This pet has been adopted by you :)</p>
                             @else
                                 <p class="text-danger">This pet has already been adopted.</p>

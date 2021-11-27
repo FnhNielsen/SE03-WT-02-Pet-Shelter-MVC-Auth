@@ -24,6 +24,10 @@ class Adoption extends Model
     {
         return $this->belongsTo(User::class, 'listed_by');
     }
+    public function adoptedBy()
+    {
+        return $this->belongsTo(User::class, 'adopted_by');
+    }
 
     public function scopeUnadopted(Builder $query)
     {
