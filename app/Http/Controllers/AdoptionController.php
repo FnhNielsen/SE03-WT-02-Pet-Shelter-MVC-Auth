@@ -73,7 +73,7 @@ class AdoptionController extends Controller
     public function mine(Adoption $adoption)
     {
         if (Auth::check()) {
-            $adoptions = Adoption::where($adoption->adopted_by == auth()->id());
+            $adoptions = Adoption::where('adopted_by',auth()->user()->id)->get();
             return view('adoptions.list', ['adoptions' => $adoptions, 'header' => 'My Adoptions']);
         }
         return redirect()->route('login');
