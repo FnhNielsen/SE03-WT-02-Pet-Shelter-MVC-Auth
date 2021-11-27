@@ -83,9 +83,9 @@ class AdoptionController extends Controller
     }
 
 
-    public function mine()
+    public function mine(Adoption $adoption)
     {
-        $adoptions = Adoption::where("adopted_by", "=", auth()->id()->get());
+        $adoptions = Adoption::where($adoption->adopted_by == auth()->id());
         /*
         |-----------------------------------------------------------------------
         | Task 6 User, step 3.
