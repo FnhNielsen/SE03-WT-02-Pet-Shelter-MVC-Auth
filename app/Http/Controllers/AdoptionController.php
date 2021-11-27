@@ -11,7 +11,12 @@ class AdoptionController extends Controller
 {
     public function create()
     {
-        return view('adoptions.create');
+        if(auth()->check()){
+            return view('adoptions.create');
+        }
+        else return redirect()->route('register');
+        //else return view ('register');
+
     }
 
     public function store(Request $request)
