@@ -9,8 +9,8 @@
                         Adopt me
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">{{ $adoption->name }}</h5>
-                        <p class="card-text">{{ $adoption->description }}</p>
+                        <h5 class="pet-name">{{ $adoption->name }}</h5>
+                        <p class="pet-description">{{ $adoption->description }}</p>
                         <p>Listed by: <b>{{ $adoption->listedBy->name }}</b></p>
                         <!-- Task 5 User, step 4: this form should not appear if the logged user is giving for adoption this pet -->
                         <!-- Task 6 User, step 4: this form should not appear if the pet was already adopted -->

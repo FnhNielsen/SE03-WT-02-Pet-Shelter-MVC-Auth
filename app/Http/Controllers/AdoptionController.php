@@ -44,7 +44,7 @@ class AdoptionController extends Controller
                 $adoption->listed_by   = auth()->id();
                 $adoption->save();
             }
-            return redirect()->route('home');
+            return redirect()->home()->with('success', "Post for $adoption->name created successfully");
         }
         else
         {
@@ -54,7 +54,6 @@ class AdoptionController extends Controller
         //Virker ikke helt :((
         //return redirect()->home()->with('success', "Post for".$adoption->name. "created successfully");
         //return redirect()->route('home')->with('success', 'Post for '.$adoption->name.' created successfully');
-        return redirect()->home()->with('success', "Post for $adoption->name created successfully");
 
         /*
         |-----------------------------------------------------------------------
@@ -79,14 +78,6 @@ class AdoptionController extends Controller
 
         $adoption->adopted_by = auth()->id();
         $adoption->save();
-
-        /*
-        |-----------------------------------------------------------------------
-        | Task 5 User, step 6. You should assing $adoption
-        | The $adoption variable should be assigned to the logged user.
-        | This is done using the adopted_by field from the user column in the database.
-        |-----------------------------------------------------------------------
-        */
 
         return redirect()->home()->with('success', "Pet $adoption->name adopted successfully");
     }
