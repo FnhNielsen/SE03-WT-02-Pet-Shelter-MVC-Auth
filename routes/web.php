@@ -36,6 +36,6 @@ Route::group(['prefix' => 'adoptions', 'as' => 'adoptions.'], function ()
     Route::post('/', [AdoptionController::class, 'store'])->name('store');
     Route::get('mine', [AdoptionController::class, 'mine'])->name('mine');
     Route::get('{adoption}', [AdoptionController::class, 'show'])->name('show');
-    Route::post('{adoption}/adopt', [AdoptionController::class, 'adopt'])->name('adopt');
+    Route::post('{adoption}/adopt', [AdoptionController::class, 'adopt'])->name('adopt')->middleware('can:adopt,adoption');
     Route::delete('{adoption}/adopt', [AdoptionController::class, 'destroy'])->name('destroy');
 });

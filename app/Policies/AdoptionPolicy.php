@@ -26,6 +26,10 @@ class AdoptionPolicy
     {
         //
     }
+    public function adopt(User $user, Adoption $adoption)
+    {
+        return $user->id != $adoption->listed_by;
+    }
 
     
 }
