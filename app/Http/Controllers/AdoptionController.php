@@ -12,7 +12,12 @@ class AdoptionController extends Controller
 {
     public function create()
     {
-        return view('adoptions.create');
+        if(auth()->check()){
+            return view('adoptions.create');
+        }
+        else return redirect()->route('register');
+        //else return view ('register');
+
     }
 
     public function store(Request $request)
@@ -46,6 +51,11 @@ class AdoptionController extends Controller
             return redirect()->route('login');
         }
 
+        //Virker ikke helt :((
+        //return redirect()->home()->with('success', "Post for".$adoption->name. "created successfully");
+        //return redirect()->route('home')->with('success', 'Post for '.$adoption->name.' created successfully');
+        return redirect()->home()->with('success', "Post for $adoption->name created successfully");
+
         /*
         |-----------------------------------------------------------------------
         | Task 4 User, step 5.
@@ -63,6 +73,13 @@ class AdoptionController extends Controller
 
     public function adopt(Adoption $adoption)
     {
+        if(auth()->id() == $adoption->listed_by){
+            abort(403);
+        }
+
+        $adoption->adopted_by = auth()->id();
+        $adoption->save();
+
         /*
         |-----------------------------------------------------------------------
         | Task 5 User, step 6. You should assing $adoption
@@ -75,8 +92,9 @@ class AdoptionController extends Controller
     }
 
 
-    public function mine()
+    public function mine(Adoption $adoption)
     {
+        $adoptions = Adoption::where($adoption->adopted_by == auth()->id());
         /*
         |-----------------------------------------------------------------------
         | Task 6 User, step 3.

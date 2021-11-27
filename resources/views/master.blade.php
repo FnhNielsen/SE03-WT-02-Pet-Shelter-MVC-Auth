@@ -21,18 +21,22 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{route('home')}}">Home</a>
+                    <a class="nav-link" aria-current="page" href="#">Home</a>
                 </li>
-                @auth()
+
+                <!-- Task 1 Authorization, elements should appear for logged users only -->
+
                     <li class="nav-item">
                         <a class="nav-link adoption-mine" href="{{ route('adoptions.mine') }}">My Adoptions</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link adoption-create" href="{{ route('adoptions.create') }}">New Listing</a>
                     </li>
-                @endauth
+
+                <!-- Task 1 Authorization-->
             </ul>
             <ul class="navbar-nav d-flex">
+                <!-- Task 1 Authorization, elements should appear for guest users only -->
                 @guest()
                     <li class="nav-item">
                         <a class="nav-link register-link" href="{{route("register")}}">Register</a>
@@ -42,6 +46,10 @@
                     </li>
                 @endguest
 
+                <!-- Task 1 Authorization-->
+
+                <!-- Task 1 Authorization, elements should appear for logged users only -->
+                    <!-- Task 1 User, step 1: add name of logged user-->
                 @auth()
                     <span class="navbar-text text-black me-4 user-name">{{Auth()->user()->name}}</span>
                     <li class="nav-item">
@@ -49,6 +57,7 @@
                         <a class="nav-link logout-link" href="{{route('logout')}}">Log out</a>
                     </li>
             @endauth
+                <!-- Task 1 Authorization-->
             </ul>
         </div>
     </div>
